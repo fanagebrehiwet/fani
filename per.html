@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fana Design Collection</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4ebe2; /* Light peachy brown */
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        header {
+            background-color: #4a322b; /* Dark reddish brown */
+            color: #f4ebe2; /* Light peachy brown */
+            padding: 2rem 0;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: #f4ebe2; /* Light peachy brown */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        nav ul li a:hover {
+            background: rgba(244, 235, 226, 0.3); /* Semi-transparent light peachy brown */
+            transform: scale(1.1);
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            min-height: 100vh; /* Make each section full-page */
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        /* Homepage Section */
+        #home {
+            background-color: #d2b4a7; /* Taupe */
+            color: #4a322b; /* Dark reddish brown */
+        }
+        #home .welcome {
+            font-size: 6rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #4a322b, #d2b4a7); /* Dark reddish brown to taupe gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 2s ease-in-out;
+        }
+        #home p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Gallery Section */
+        #gallery {
+            background: #f4ebe2; /* Light peachy brown */
+            position: relative;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        /* Fullscreen Image Viewer */
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .fullscreen img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        /* Navigation Arrows */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: #fff;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            padding: 10px;
+            transition: background 0.3s ease;
+        }
+        .arrow:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .arrow-left {
+            left: 20px;
+        }
+        .arrow-right {
+            right: 20px;
+        }
+        /* About Section */
+        #about {
+            background: #d2b4a7; /* Taupe */
+            color: #4a322b; /* Dark reddish brown */
+        }
+        #about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        #about p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+        #about .extra-info {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #555;
+        }
+        /* Contact Section */
+        #contact {
+            background: #f4ebe2; /* Light peachy brown */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            width: 100%;
+        }
+        form input,
+        form textarea,
+        form button {
+            padding: 12px;
+            border: 2px solid #d2b4a7; /* Taupe */
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        form input:focus,
+        form textarea:focus {
+            border-color: #4a322b; /* Dark reddish brown */
+            outline: none;
+        }
+        form button {
+            background: linear-gradient(135deg, #4a322b, #d2b4a7); /* Dark reddish brown to taupe gradient */
+            color: #f4ebe2; /* Light peachy brown */
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: background 0.3s ease;
+        }
+        form button:hover {
+            background: linear-gradient(135deg, #d2b4a7, #4a322b); /* Taupe to dark reddish brown gradient */
+        }
+        /* Footer */
+        footer {
+            background: #4a322b; /* Dark reddish brown */
+            color: #f4ebe2; /* Light peachy brown */
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+        footer p {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Fana Design Collection</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Main Content -->
+    <main>
+        <!-- Homepage Section -->
+        <section id="home">
+            <div class="welcome">Welcome</div>
+            <p>Explore my creative designs in textiles and garments.</p>
+        </section>
+        <!-- Gallery Section -->
+        <section id="gallery">
+            <h2>Gallery</h2>
+            <div class="gallery">
+                        <!-- Loop through 30 images -->
+                <img src="C:\Users\FANA\Desktop\design\photo_1_2025-03-26_09-15-15.jpg" alt="Design 1">
+                <img src="C:\Users\FANA\Desktop\design\photo_2_2025-03-26_09-15-15.jpg" alt="Design 2">
+                <img src="C:\Users\FANA\Desktop\design\photo_3_2025-03-26_09-15-15.jpg" alt="Design 3">
+                <img src="C:\Users\FANA\Desktop\design\photo_4_2025-03-26_09-15-15.jpg" alt="Design 4">
+                <img src="C:\Users\FANA\Desktop\design\photo_5_2025-03-26_09-15-15.jpg" alt="Design 5">
+                <img src="C:\Users\FANA\Desktop\design\photo_6_2025-03-26_09-15-15.jpg" alt="Design 6">
+                <img src="C:\Users\FANA\Desktop\design\photo_7_2025-03-26_09-15-15.jpg" alt="Design 7">
+                <img src="C:\Users\FANA\Desktop\design\photo_8_2025-03-26_09-15-15.jpg" alt="Design 8">
+                <img src="C:\Users\FANA\Desktop\design\photo_9_2025-03-26_09-15-15.jpg" alt="Design 9">
+                <img src="C:\Users\FANA\Desktop\design\photo_10_2025-03-26_09-15-15.jpg" alt="Design 10">
+                <img src="C:\Users\FANA\Desktop\photo_25_2025-03-26_10-09-37.jpg" alt="Design 11">
+                <img src="C:\Users\FANA\Desktop\photo_19_2025-03-26_10-09-37.jpg" alt="Design 12">
+                <img src="C:\Users\FANA\Desktop\photo_14_2025-03-26_10-09-37.jpg" alt="Design 13">
+                <img src="C:\Users\FANA\Desktop\photo_13_2025-03-26_10-09-37.jpg" alt="Design 14">
+                <img src="C:\Users\FANA\Desktop\photo_28_2025-03-26_10-09-37.jpg" alt="Design 15">
+                <img src="C:\Users\FANA\Desktop\photo_17_2025-03-26_10-09-37.jpg" alt="Design 16">
+                <img src="C:\Users\FANA\Desktop\photo_12_2025-03-26_10-09-37.jpg" alt="Design 17">
+                <img src="C:\Users\FANA\Desktop\photo_6_2025-03-26_10-09-37.jpg" alt="Design 18">
+                <img src="C:\Users\FANA\Desktop\photo_27_2025-03-26_10-09-37.jpg" alt="Design 19">
+                <img src="C:\Users\FANA\Desktop\photo_22_2025-03-26_10-09-37.jpg" alt="Design 20">
+                <img src="C:\Users\FANA\Desktop\photo_21_2025-03-26_10-09-37.jpg" alt="Design 21">
+                <img src="C:\Users\FANA\Desktop\photo_16_2025-03-26_10-09-37.jpg" alt="Design 22">
+                <img src="C:\Users\FANA\Desktop\photo_10_2025-03-26_10-09-37.jpg" alt="Design 23">
+                <img src="C:\Users\FANA\Desktop\photo_3_2025-03-26_10-09-37.jpg" alt="Design 24">
+                <img src="C:\Users\FANA\Desktop\photo_9_2025-03-26_10-09-37.jpg" alt="Design 25">
+            </div>
+        </section>
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I am a textile and garment engineering student passionate about design. My collection reflects my creativity and love for fashion.</p>
+            <p class="extra-info">
+                I specialize in creating unique patterns and textures that blend modern trends with traditional craftsmanship. My goal is to inspire and empower through innovative designs.
+            </p>
+        </section>
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Fana Design Collection</p>
+    </footer>
+    <!-- JavaScript for Fullscreen Image Viewer and Slideshow -->
+    <script>
+        let currentIndex = 0;
+        document.querySelectorAll('.gallery img').forEach((image, index) => {
+            image.addEventListener('click', () => {
+                currentIndex = index;
+                const fullScreen = document.createElement('div');
+                fullScreen.classList.add('fullscreen');
+                const img = document.createElement('img');
+                img.src = image.src;
+                // Add navigation arrows
+                const arrowLeft = document.createElement('div');
+                arrowLeft.classList.add('arrow', 'arrow-left');
+                arrowLeft.innerHTML = '&#10094;';
+                arrowLeft.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    currentIndex = (currentIndex - 1 + document.querySelectorAll('.gallery img').length) % document.querySelectorAll('.gallery img').length;
+                    img.src = document.querySelectorAll('.gallery img')[currentIndex].src;
+                });
+                const arrowRight = document.createElement('div');
+                arrowRight.classList.add('arrow', 'arrow-right');
+                arrowRight.innerHTML = '&#10095;';
+                arrowRight.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    currentIndex = (currentIndex + 1) % document.querySelectorAll('.gallery img').length;
+                    img.src = document.querySelectorAll('.gallery img')[currentIndex].src;
+                });
+                fullScreen.appendChild(img);
+                fullScreen.appendChild(arrowLeft);
+                fullScreen.appendChild(arrowRight);
+                document.body.appendChild(fullScreen);
+                fullScreen.addEventListener('click', () => {
+                    document.body.removeChild(fullScreen);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
